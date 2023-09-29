@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .green {
+            background-color: green;
+        }
+    </style>
+
+</head>
+<body>
+<div th:each="member : ${members}">
+    itemA : <span th:text="${member.getItemA()}"></span>
+    itemB : <span th:text="${member.getItemB()}"></span>
+    itemC : <span th:text="${member.getItemC()}"></span>
+    color : <span th:text="${member.getColor()}"></span>
+
+    <div th:class="${member.getColor()}">색깔</div>
+</div>
+
+</body>
+</html>
