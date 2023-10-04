@@ -1,0 +1,89 @@
+/* CSS 파일 */
+
+body {
+    background-color: #ccd7fe;
+    margin: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* 로고 위치를 조절하기 위해 부모 요소에 상대적 위치를 설정 */
+}
+
+.logo {
+    display: flex;
+    align-items: center; 
+    color: aliceblue;
+    width: 100%;
+    font-size: 40px;
+    letter-spacing: 4px;
+    padding: 20px;
+    background-color: royalblue;
+    position: absolute; /* 로고를 원래 위치에 고정 */
+    top: 0; /* 로고의 상단을 상단에 맞춤 */
+    left: 0; /* 로고의 왼쪽을 왼쪽에 맞춤 */
+}
+
+.logo a {
+    text-decoration: none;
+    color: rgb(225, 232, 252);
+    margin-left: 10px;
+}
+
+.login_box {
+    background-color: #ffffff;
+    width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px; /* 로그인 창을 가운데로 이동시킴 */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"] {
+    padding: 15px; /* 패딩을 늘려 입력 창 크기를 조절 */
+    border: 1px solid #f1dada;
+    border-radius: 4px;
+    font-size: 25px; /* 폰트 크기를 늘려 입력 창 텍스트 크기를 조절 */
+}
+
+
+.btn_group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn_group button {
+    background-color: #82afe9;
+    color: aliceblue;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn_group button:hover {
+    background-color: #395983;
+}
+
+.btn_group a {
+    font-size: 14px;
+    color: #395983;
+    text-decoration: none;
+}
