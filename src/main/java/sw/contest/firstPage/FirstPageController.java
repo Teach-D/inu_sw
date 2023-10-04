@@ -16,7 +16,7 @@ public class FirstPageController {
     FirstPageRepository memberRepository = FirstPageRepository.getFirstPageRepository();
     List<FirstPageMember> findMembers = new ArrayList<>();
     List<FirstPageMember> findMembers1 = new ArrayList<>();
-    log.info("dd");
+    log.info("ddffff");
     @PostMapping("/firstPage/items")
     public String findMembers(FirstPageMember firstPageMember, Model model) {
 
