@@ -26,9 +26,11 @@ public class CrimeListController {
         //log.info(members.toString());
 
         addModel(member, model, members);
+        
 
         return "/crimeList/members";
     }
+    dwajdi
 
     private void addModel(Member member, Model model, List<Member> members) {
         for (Member findMember : members) {
