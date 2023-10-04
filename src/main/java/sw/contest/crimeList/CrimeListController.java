@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+// 수정 연습
+// 2번째 수정
 @Slf4j
 @Controller
 public class CrimeListController {
@@ -30,8 +31,6 @@ public class CrimeListController {
 
         return "/crimeList/members";
     }
-    //수정 연습
-
     private void addModel(Member member, Model model, List<Member> members) {
         for (Member findMember : members) {
             if(Objects.equals(findMember.getItemA(), member.getItemA()) && Objects.equals(findMember.getItemB()
