@@ -30,7 +30,7 @@ public class CrimeListController {
 
         return "/crimeList/members";
     }
-    dwajdi
+    //수정 연습
 
     private void addModel(Member member, Model model, List<Member> members) {
         for (Member findMember : members) {
