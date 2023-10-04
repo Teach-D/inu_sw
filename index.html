@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>깅력범죄 웹사이트</title>
+    <title>깅력범죄 웹</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,9 @@
 
 </head>
 <body>
+    <button class="toggle-btn" id="sidebar-expand">
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
         <div class ="map container">
             <div id="map"></div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad5c2d41866dc1de61d28315055bd57c"></script>
@@ -25,10 +28,8 @@
         var map = new kakao.maps.Map(container, options);
         </script>
         </div>
+    
 <nav class="main">
-    <button class="toggle-btn" id="sidebar-expand">
-        <i class="fa-solid fa-arrow-right"></i>
-    </button>
     <div class="container">
         <div class="sidebar">
             <div class="logo-toggle-container">
