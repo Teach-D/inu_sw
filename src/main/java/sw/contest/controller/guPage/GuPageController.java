@@ -1,5 +1,5 @@
 package sw.contest.controller.guPage;
-
+// 동현
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
