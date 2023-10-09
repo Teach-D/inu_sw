@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sw.contest.dto.guPage.GuPageDto;
 
 @Controller
 @Slf4j
@@ -20,11 +21,12 @@ public class GuPageController {
     }
 
     @PostMapping("/crimeMethod")
-    public String displayPage1(@RequestParam("crimeMethod") String crimeMethod) {
-        if (crimeMethod.equals("murder")) {
-            return "guPage/murderPage";
-        }
+    public String displayPage1(GuPageDto guPageDto) {
+        log.info(guPageDto.getAge());
+        log.info(guPageDto.getTime());
+        log.info(guPageDto.getGender());
+        log.info(guPageDto.getCrimeMethod());
 
-        return "guPage/test";
+        return "guPage/violencePage";
     }
 }

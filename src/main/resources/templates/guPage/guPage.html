@@ -69,34 +69,31 @@
         <form action="/guPage/crimeMethod" method="post">
             <div>
                 <select name="crimeMethod">
-                    <option value="1">폭행</option>
+                    <option value="robber">강도</option>
                     <option value="murder">살인</option>
-                    <option value="3">방화</option>
-                    <option value="4">금품갈취(강도)</option>
-                    <option value="5">절도</option>
-                    <option value="6">성폭력</option>
-                    <option value="7">마약</option>
-                    <option value="8">묻지마</option>
+                    <option value="rape">성폭력</option>
+                    <option value="theft">절도</option>
+                    <option value="violence">폭력</option>
                 </select>
             </div>
             <div>
-                <select name="Gender">
-                    <option value="1">남성</option>
-                    <option value="2">여성</option>
+                <select name="gender">
+                    <option value="man">남성</option>
+                    <option value="woman">여성</option>
                 </select>
             </div>
             <div>
-                <select name="Age">
-                    <option value="1">성인</option>
-                    <option value="2">미성년</option>
-                    <option value="3">노인</option>
+                <select name="age">
+                    <option value="adult">성인</option>
+                    <option value="minor">미성년</option>
+                    <option value="old">노인</option>
                 </select>
             </div>
             <div>
-                <select name="Time">
-                    <option value="1">오전</option>
-                    <option value="2">오후</option>
-                    <option value="3">밤</option>
+                <select name="time">
+                    <option value="am">오전</option>
+                    <option value="pm">오후</option>
+                    <option value="night">밤</option>
                 </select>
             </div>
             <input type="submit">
