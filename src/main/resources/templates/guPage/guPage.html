@@ -1,45 +1,48 @@
+<!--
+민주
+-->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>깅력범죄 웹</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/guPage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5a9b8e0df0.js" crossorigin="anonymous"></script>
-    <script src="main.js" defer></script>
+    <script src="/js/guPage.js" defer></script>
 
 </head>
 <body>
-    <button class="toggle-btn" id="sidebar-expand">
-        <i class="fa-solid fa-arrow-right"></i>
-    </button>
-        <div class ="map container">
-            <div id="map"></div>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad5c2d41866dc1de61d28315055bd57c"></script>
-        <script>
+<button class="toggle-btn" id="sidebar-expand">
+    <i class="fa-solid fa-arrow-right"></i>
+</button>
+<div class ="map container">
+    <div id="map"></div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad5c2d41866dc1de61d28315055bd57c"></script>
+    <script>
         var container = document.getElementById('map');
         var options = {
             center: new kakao.maps.LatLng(33.450701, 126.570667),
             level: 3
         };
         var map = new kakao.maps.Map(container, options);
-        </script>
-        </div>
-    
+    </script>
+</div>
+
 <nav class="main">
     <div class="container">
         <div class="sidebar">
             <div class="logo-toggle-container">
-            <div class="logo" id="logo">
-                <i class="fa-solid fa-handcuffs"></i>
-                <a href="index.html">Criminal Map</a>
-                <button class="toggle-btn" id="sidebar-toggle">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+                <div class="logo" id="logo">
+                    <i class="fa-solid fa-handcuffs"></i>
+                    <a href="guPage.html">Criminal Map</a>
+                    <button class="toggle-btn" id="sidebar-toggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
             </div>
             <div class="menu">
                 <ul class="main__menu">
@@ -63,42 +66,39 @@
     <div class="popup-content">
         <span class="close" id="closePopup">&times;</span>
         <h2>범죄 정보 입력</h2>
-        <form action="/basic/items" method="post">
+        <form action="/guPage/crimeMethod" method="post">
             <div>
-                <select name="Crime method">
-                    <option value="1">폭행</option>
-                    <option value="2">살인</option>
-                    <option value="3">방화</option>
-                    <option value="4">금품갈취(강도)</option>
-                    <option value="5">절도</option>
-                    <option value="6">성폭력</option>
-                    <option value="7">마약</option>
-                    <option value="8">묻지마</option>
+                <select name="crimeMethod">
+                    <option value="robber">강도</option>
+                    <option value="murder">살인</option>
+                    <option value="rape">성폭력</option>
+                    <option value="theft">절도</option>
+                    <option value="violence">폭력</option>
                 </select>
             </div>
             <div>
-                <select name="Gender">
-                    <option value="1">남성</option>
-                    <option value="2">여성</option>
+                <select name="gender">
+                    <option value="man">남성</option>
+                    <option value="woman">여성</option>
                 </select>
             </div>
             <div>
-                <select name="Age">
-                    <option value="1">성인</option>
-                    <option value="2">미성년</option>
-                    <option value="3">노인</option>
+                <select name="age">
+                    <option value="adult">성인</option>
+                    <option value="minor">미성년</option>
+                    <option value="old">노인</option>
                 </select>
             </div>
             <div>
-                <select name="Time">
-                    <option value="1">오전</option>
-                    <option value="2">오후</option>
-                    <option value="3">밤</option>
+                <select name="time">
+                    <option value="am">오전</option>
+                    <option value="pm">오후</option>
+                    <option value="night">밤</option>
                 </select>
             </div>
             <input type="submit">
         </form>
-    </ul>
+        </ul>
     </div>
 </div>
 </body>
