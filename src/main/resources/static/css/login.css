@@ -150,7 +150,6 @@ this excludes the social icons*/
   }
 }
 
-
 /* 전반부를 후반부의 2배로 확장 */
 .FormPanel {
   flex-grow: 2;
