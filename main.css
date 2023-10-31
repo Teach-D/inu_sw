@@ -162,20 +162,20 @@ color:aliceblue;
     }
 
     .logo {
-        font-size: 10px; /* 화면이 작아질 때 로고 크기 감소 */
+        font-size: 70px; /* 화면이 작아질 때 로고 크기 감소 */
     }
     
     /* 화면이 작아질 때 로고 텍스트와 아이콘의 크기 감소 */
     .logo i.fa-solid {
-        font-size: 10px;
+        font-size: 70px;
     }
     .logo a {
-        margin-left: 5px;
+        margin-left: 40px;
     }
 .main{
 flex-direction: row;
 align-items: flex-start;
-padding: 8px 24px;
+padding: 100px 50px;
     }
 
     .main__menu{
