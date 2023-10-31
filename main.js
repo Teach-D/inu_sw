@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var container = document.getElementById('map');
 var options = {
-    center: new kakao.maps.LatLng(37.546826, 126.9086567),
-    level: 8
+    center: new kakao.maps.LatLng(37.556826, 126.8486567),
+    level: 9
 };
 var map = new kakao.maps.Map(container, options),
     customOverlay = new kakao.maps.CustomOverlay({});
@@ -102,11 +102,6 @@ function displayArea(coordinates, name) {
     
      // 폴리곤의 이름을 표시하는 커스텀 오버레이를 생성하고 지도에 추가
 // 폰트 크기를 조절할 수 있는 스타일을 추가합니다
-var customOverlay = new daum.maps.CustomOverlay({
-    content: '<div class="area-name" style="font-size: 30px;">' + name + '</div>', // 여기에서 폰트 크기를 조절
-    map: map,
-    position: new daum.maps.LatLng(centroidPoint.x, centroidPoint.y),
-});
 
      // 마우스 이벤트를 통해 오버레이를 표시/숨김
      kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
@@ -125,8 +120,8 @@ var customOverlay = new daum.maps.CustomOverlay({
     kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
         polygon.setOptions({fillColor: '#09f'});
 
-        customOverlay.setContent('<div class="area-name" style="font-size: 30px;">' + name + '</div>');
-        
+        customOverlay.setContent('<div class="area-name" style="font-size: 25px;">' + name + '</div>');
+    
         customOverlay.setPosition(mouseEvent.latLng); 
         //customOverlay.setMap(map);
     });
