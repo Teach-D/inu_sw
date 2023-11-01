@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성 폼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5a9b8e0df0.js" crossorigin="anonymous"></script>
+</head>
+
+<style>
+.layout {
+    background-color:rgb(255, 255, 255);
+    width: 100%;
+    height: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    margin-top: 5%;
+margin-left: 2%;
+margin-right: 2%;
+    border-radius: 10px;
+    align-items: center;
+}
+
+body {
+    background-color: #ccd7fe;
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: aliceblue;
+    width: 100%;
+    padding: 10px;
+    font-size: 34px;
+    letter-spacing: 2px;
+    background-color: royalblue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 55px;
+}
+
+.logo a {
+    align-items: center;
+    text-decoration: none;
+    color: rgb(225, 232, 252);
+    margin-left: 10px;
+}
+
+.layout input, .layout textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15%;
+}
+
+.layout textarea {
+    margin-top: 5%;
+    min-height: 300px;
+}
+
+button[type="submit"] {
+    background-color: #73a4d9;
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 3%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 1%;
+}
+
+button[type="submit"]:hover {
+    background-color: #395983;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        width: 95%; /* 작은 화면에 맞게 더 축소 */
+    }
+}
+</style>
+
+
+</style>
+
+
+</style>
+
+<body>
+
+    <div class="logo" id="logo">
+        <i class="fa-solid fa-handcuffs"></i>
+        <a href="http://127.0.0.1:5500/main_page/main.html">Criminal Map</a>
+    </div>
+
+<div class="layout">
+    <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
+        <input name="title" type="text" th:value="${board.title}">
+        <textarea name="content" th:text="${board.content}"></textarea>
+        <button type="submit">수정</button>
+    </form>
+</div>
+</body>
+</html>
