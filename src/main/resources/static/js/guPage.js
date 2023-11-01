@@ -1,5 +1,7 @@
 /* JavaScript 수정 */
 
+
+
 // 사이드바에서 정보 받아오기
 var count = 1;
 var send = document.getElementById("send");
@@ -447,6 +449,8 @@ function displayArea(coordinates, name, count1) {
         //customOverlay.setMap(map);
     });
 
+
+    
     // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
     // 커스텀 오버레이를 지도에서 제거합니다
     kakao.maps.event.addListener(polygon, 'mouseout', function() {
@@ -457,16 +461,12 @@ function displayArea(coordinates, name, count1) {
     // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다
     kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
         // 현재 지도 레벨에서 2레벨 확대한 레벨
-        var level = map.getLevel()-2;
+        var level = map.getLevel()-4;
         //console.log(level);
         // 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
         map.setLevel(level, {anchor: centroid(points), animate: {
                 duration: 350            //확대 애니메이션 시간
             }});
-
-        var naverMapURL = 'https://www.naver.com/';
-        // 새 창으로 네이버 맵 열기
-        window.open(naverMapURL, '_blank');
 
         deletePolygon(polygons);                    //폴리곤 제거
     });
@@ -496,3 +496,4 @@ function deletePolygon(polygons) {
     }
     polygons = [];
 }
+
