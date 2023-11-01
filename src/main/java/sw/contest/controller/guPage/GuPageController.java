@@ -20,6 +20,11 @@ public class GuPageController {
         return "guPage/guPage";
     }
 
+    @PostMapping("/index")
+    public String displayGuPage1(Model model) {
+        return "guPage/guPage";
+    }
+
     @PostMapping("/crimeMethod")
     public String displayPage1(GuPageDto guPageDto) {
         log.info(guPageDto.getAge());
