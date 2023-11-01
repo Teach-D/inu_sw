@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var container = document.getElementById('map');
 var options = {
-    center: new kakao.maps.LatLng(37.546826, 126.9086567),
-    level: 8
+    center: new kakao.maps.LatLng(37.556826, 126.8486567),
+    level: 9
 };
 var map = new kakao.maps.Map(container, options),
     customOverlay = new kakao.maps.CustomOverlay({});
@@ -68,6 +68,7 @@ $.getJSON("https://raw.githubusercontent.com/southkorea/seoul-maps/master/kostat
         var name = feature.properties.name; // 올바른 속성 이름을 사용하세요
         //console.log(feature.properties);
         displayArea(coordinates, name);
+
     });
 });
 
@@ -84,14 +85,16 @@ function displayArea(coordinates, name) {
         points.push(point);
         path.push(new daum.maps.LatLng(coordinate[1], coordinate[0]));  
     });
+
     var polygon = new daum.maps.Polygon({
         map : map, // 다각형을 표시할 지도 객체
         path : path,
         strokeWeight : 2,
         strokeColor : '#004c80',
         strokeOpacity : 0.8,
-        fillColor : '#fff',
+        fillColor : (name == "강서구") ? '#FF0000' : '#fff',
         fillOpacity : 0.7
+        
     });
 
     polygons.push(polygon);
@@ -102,16 +105,15 @@ function displayArea(coordinates, name) {
     
      // 폴리곤의 이름을 표시하는 커스텀 오버레이를 생성하고 지도에 추가
 // 폰트 크기를 조절할 수 있는 스타일을 추가합니다
-var customOverlay = new daum.maps.CustomOverlay({
-    content: '<div class="area-name" style="font-size: 30px;">' + name + '</div>', // 여기에서 폰트 크기를 조절
-    map: map,
-    position: new daum.maps.LatLng(centroidPoint.x, centroidPoint.y),
-});
 
+// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
      // 마우스 이벤트를 통해 오버레이를 표시/숨김
      kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
         var centroidPoint = centroid(points);
-      
+        polygon.setOptions({fillColor: '#09f'});
+        customOverlay.setContent('<div class="area-name" style="font-size: 25px;">' + name + '</div>');
+        customOverlay.setPosition(mouseEvent.latLng); 
         customOverlay.setMap(map);
      });
      
@@ -119,17 +121,6 @@ var customOverlay = new daum.maps.CustomOverlay({
          customOverlay.setMap(null);
          
      });
- 
-    // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
-    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-    kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
-        polygon.setOptions({fillColor: '#09f'});
-
-        customOverlay.setContent('<div class="area-name" style="font-size: 30px;">' + name + '</div>');
-        
-        customOverlay.setPosition(mouseEvent.latLng); 
-        //customOverlay.setMap(map);
-    });
 
     // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
     // 커스텀 오버레이를 지도에서 제거합니다 
