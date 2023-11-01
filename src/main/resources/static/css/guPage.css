@@ -11,6 +11,7 @@ body {
     margin: 0;
     font-family: 'Source Sans 3', sans-serif;
     background-color: #ccd7fe;
+    overflow: hidden; /* 스크롤바를 숨깁니다. */
 }
 
 .container {
@@ -19,7 +20,7 @@ body {
 }
 
 .sidebar {
-    width: 22%; /* 사이드바의 너비를 조절하세요. */
+    width: 25%; /* 사이드바의 너비를 조절하세요. */
     position: fixed; /* 사이드바를 화면에 고정합니다. */
     top: 0;
     left: 0; /* 사이드바를 왼쪽 끝에 위치시킵니다. */
@@ -42,7 +43,7 @@ body {
     border: none;
     cursor: pointer;
     color: aliceblue;
-    font-size: 40px;
+    font-size: 5px;
     position: fixed;
     top: 0;
     left: 0;
@@ -64,14 +65,42 @@ body {
     width: 100%;
     height: 100%;
 }
+
 .main{
     position: relative;
     justify-content: flex-start;
-    align-items: flex-start; 
+    align-items: flex-start;
     flex-direction: column;
     height: 100vh;
     display: flex;
 }
+
+.logo-toggle-container {
+    flex-direction: column;
+    font-size: 10px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: royalblue;
+}
+.logo {
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+    font-size: 34px;
+    letter-spacing: 2px;
+    padding: 10px;
+    background-color: royalblue;
+    transition: font-size 0.7s;
+
+}
+.logo a {
+    align-items: center;
+    text-decoration: none;
+    color: aliceblue;
+    margin-left: 6px; /* 로고 텍스트와 아이콘 사이의 간격 조절 */
+}
+
 .menu{
     padding-left: 0;
     text-align: center;
@@ -83,79 +112,42 @@ body {
 .menu a{
     text-decoration: none;
     color: aliceblue;
-    font-size: 27px;
+    font-size: 18px;
     letter-spacing: 2px;
     display: list-item;
-    padding: 20px;
+    padding: 15px;
     flex-grow: 1;
 }
 .menu a:hover{
-background-color: rgb(125, 141, 231);
-text-decoration: none;
-color: rgb(204, 216, 228);
-transition: 0.5s;
-letter-spacing: 4px;
-text-transform: uppercase;
-}
-.logo-toggle-container {
-    display: flex;
-    align-items: center;
-    background-color: royalblue;
-    justify-content: space-between; /* 로고와 토글 버튼 간의 간격을 최대로 설정 */
-}
-.logo {
-    display: flex; /* 로고와 아이콘을 가로로 정렬 */
-    align-items: center; 
-    color: aliceblue;
-    font-size: 40px;
-    letter-spacing: 4px;
-    padding: 20px;
-    background-color: royalblue;
-    transition: font-size 0.7s;
-}
-.logo a {
-    align-items: center;
+    background-color: rgb(125, 141, 231);
     text-decoration: none;
-    color: aliceblue;
-    margin-left: 10px; /* 로고 텍스트와 아이콘 사이의 간격 조절 */
+    color: rgb(204, 216, 228);
+    transition: 0.5s;
+    letter-spacing: 4px;
+    text-transform: uppercase;
 }
 
 body{
-margin: 0;
-font-family: 'Source Sans 3';
+    margin: 0;
+    font-family: 'Source Sans 3';
 }
 a{
-text-decoration: none;
-color:aliceblue;
-}
-
-.main__icons{
-    list-style: none;
+    text-decoration: none;
     color:aliceblue;
-    display: flex;
-    align-items: center; /* 아이콘들을 수직 가운데 정렬합니다. */
-    justify-content: center; /* 아이콘들을 아래로 정렬합니다. */
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* 아이콘 컨테이너의 높이를 100%로 설정합니다. */
-    margin-top: 500px;
 }
-    
-.main__icons li{
-    padding: 10px 20px;
-    }
 
 .toggle-btn {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        color: aliceblue;
-        font-size: 40px;
-        margin-left: 30px; /* 로고 텍스트와 아이콘 사이의 간격 조절 */
-    }
-    .sidebar.collapsed {
-        width: 0;
-    }
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: aliceblue;
+    font-size: 25px;
+    margin-left: 15px; /* 로고 텍스트와 아이콘 사이의 간격 조절 */
+}
+.sidebar.collapsed {
+    width: 0;
+}
 @media screen and (max-width:768px) {
     .container {
         flex-direction: column; /* 화면이 작아지면 세로로 배치 */
@@ -164,19 +156,26 @@ color:aliceblue;
         flex-direction: column; /* 화면이 작아질 때 세로로 배치 */
         width: 100%; /* 화면 크기에 맞춰 전체 너비를 설정 */
     }
+    .logo-toggle-container {
+        padding: 5px;
+        transition: padding 0.5s; /* 패딩 변경에 애니메이션 효과 추가 */
+    }
 
     .logo {
-        font-size: 30px; /* 화면이 작아질 때 로고 크기 감소 */
+        font-size: 70px; /* 화면이 작아질 때 로고 크기 감소 */
     }
-    
+
     /* 화면이 작아질 때 로고 텍스트와 아이콘의 크기 감소 */
     .logo i.fa-solid {
-        font-size: 24px;
+        font-size: 70px;
     }
-.main{
-flex-direction: row;
-align-items: flex-start;
-padding: 8px 24px;
+    .logo a {
+        margin-left: 40px;
+    }
+    .main{
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 100px 50px;
     }
 
     .main__menu{
@@ -187,90 +186,98 @@ padding: 8px 24px;
     }
 
     .main__menu li{
-width: 100%;
-text-align: center;
+        width: 100%;
+        text-align: center;
     }
 
     .main__icons{
         list-style: none;
         display: none;
-justify-content:center;
-width:100%;
+        justify-content:center;
+        width:100%;
     }
     .main__toggleBtn{
         display:block;
-        }
-
-        .main__menu.active,
-        .main__icons.active{
-            display: flex;
-        }
-}
-
-    form {
-        text-align: center;
-        margin-top: 20px;
     }
-    input[type="text"] {
+
+    .main__menu.active,
+    .main__icons.active{
+        display: flex;
+    }
+    .menu {
         padding: 10px;
-        width: 300px;
-        border: 1px solid aliceblue;
-        border-radius: 5px;
-        font-size: 16px;
+        transition: padding 0.5s;
     }
-    button[type="submit"] {
-        padding: 10px 20px;
-        background-color: #325982;
-        color: aliceblue;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
+    @media screen and (max-width: 500px) {
+        .menu {
+            flex-grow: 0;
+            width: auto;
+        }
     }
 
-/* 팝업 스타일 */
-.popup {
-    display: none; /* 초기에는 숨김 */
-    position: fixed;
-    top: 0;
-    right: 0; /* 팝업을 오른쪽에 위치시킴 */
-    width: 800px; /* 팝업의 너비 지정 */
-    height: 100%; /* 화면 높이만큼 설정하여 전체 화면을 덮도록 함 */
-    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 배경색 */
-    z-index: 999; /* 다른 요소 위에 표시하기 위한 레이어 값 */
-    overflow-x: hidden; /* x-축 스크롤 막음 */
-    transition: right 0.3s; /* 팝업 열릴 때 애니메이션 효과 */
 }
 
-.popup-content {
-    background-color: #fff;
-    width: 100%; /* 팝업 내용의 너비 설정 */
-    padding: 20px;
-    margin-top: 20px; /* 위에서 일정한 간격을 둠 */
-    margin-right: 20px; /* 오른쪽에서 일정한 간격을 둠 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    position: relative; /* 자식 요소에 대한 상대적인 위치 설정 */
+form {
+    text-align: center;
+    margin-top: 20px;
 }
-/* 팝업 내부의 선택지 스타일 */
-.popup-content select {
-    width: 100%;
+input[type="text"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    width: 300px;
+    border: 1px solid aliceblue;
     border-radius: 5px;
     font-size: 16px;
-    margin-bottom: 10px;
 }
-
-
-/* 제출 버튼 스타일 */
-input[type="submit"] {
+button[type="submit"] {
     padding: 10px 20px;
     background-color: #325982;
     color: aliceblue;
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    cursor: pointer;
+}
+
+/* 기존 스타일 유지 */
+
+form h1 {
+    font-size: 15px; /* 원하는 글자 크기로 조절하세요. */
+    padding: 4px;
+    text-align: left;
+}
+
+form h2 {
+    font-size: 20px; /* 원하는 글자 크기로 조절하세요. */
+    padding: 8px;
+}
+
+/* 범죄 정보 입력 폼 스타일 */
+form {
+    background-color: #fff; /* 하얀 박스 배경색 지정 */
+    padding: 12px; /* 내부 여백 설정 */
+    border-radius: 20px; /* 모서리를 둥글게 만듭니다. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+    margin-top: 10px; /* 위에서 일정한 간격을 둡니다. */
+}
+
+/* 선택지 칸 스타일 */
+form select {
+    width: 100%; /* 칸의 너비를 100%로 설정하여 동일한 크기로 만듭니다. */
+    padding: 10px; /* 내부 여백 설정 */
+    border: 1px solid #ccc; /* 테두리 추가 */
+    border-radius: 5px; /* 모서리를 둥글게 만듭니다. */
+    font-size: 12px; /* 폰트 크기 설정 */
+    margin-bottom: 10px; /* 아래 여백 설정 */
+}
+
+/* 제출 버튼 스타일 */
+input[type="submit"] {
+    padding: 10px 10px;
+    background-color: #6ca0d7;
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
     cursor: pointer;
     transition: background-color 0.3s; /* 배경색 변경에 애니메이션 효과 추가 */
 }
@@ -281,13 +288,16 @@ input[type="submit"]:hover {
     transition: background-color 0.3s; /* 배경색 변경에 애니메이션 효과 추가 */
 }
 
-
-/* 닫기 버튼 스타일 */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
+/* 메인 아이콘 스타일 */
+.main__icons {
+    list-style: none;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0; /* 메인 아이콘과 입력 폼 사이에 간격 추가 */
 }
 
+.main__icons li {
+    padding: 2px 20px;
+}
