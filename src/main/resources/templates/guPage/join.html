@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/join.css"> <!-- 회원가입 페이지용 CSS 파일 -->
+    <link rel="stylesheet" href="src/main/resources/static/css/login-join.css"> <!-- 회원가입 페이지용 CSS 파일 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
     <a href="index">Criminal Map</a>
 </div>
 
-<form action="회원가입처리.php" method="POST"> <!-- 회원가입 정보를 처리할 PHP 파일로 수정 -->
+<form action="sign-php/signup.php" method="POST"> <!-- 회원가입 정보를 처리할 PHP 파일로 수정 -->
     <div class="input-group">
         <label for="id">아이디</label>
         <input type="text" name="id" id="id" required>
