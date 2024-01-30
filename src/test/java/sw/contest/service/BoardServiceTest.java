@@ -22,4 +22,5 @@ class BoardServiceTest {
         boardService.write(new Board(1, "A", "C"));
 
     }
+
 }
