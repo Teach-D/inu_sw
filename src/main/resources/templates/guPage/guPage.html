@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>강력범죄 웹</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/5a9b8e0df0.js" crossorigin="anonymous"></script>
+    <script src="main.js" defer></script>
+
+</head>
+<body>
+    <button class="toggle-btn" id="sidebar-expand">
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+        <div class ="map container">
+            <div id="map"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad5c2d41866dc1de61d28315055bd57c"></script>
+        </div>
+    
+<nav class="main">
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo-toggle-container">
+            <div class="logo" id="logo">
+                <i class="fa-solid fa-handcuffs"></i>
+                <a href="main.html">Criminal Map</a>
+                <button class="toggle-btn" id="sidebar-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            </div>
+            <div class="menu">
+                <ul class="main__menu">
+                    <li><a href="http://127.0.0.1:5500/Login_page/login.html"><i class="fa-solid fa-user"></i> 로그인</a></li>
+                    <li><a href="http://127.0.0.1:5500/Board.page/board.html"><i class="fa-solid fa-newspaper"></i> 게시판</a></li>
+                    <li><a href=""><i class="fa-solid fa-magnifying-glass"></i>검색</a></li>
+                </ul>
+
+                <form action="/basic/items" method="post">
+                    <h2>범죄 정보 입력</h2>
+                    <div>
+                        <h1>범죄 종류</h1>
+                        <select name="Crime method">
+                            <option value="1">폭행</option>
+                            <option value="2">살인</option>
+                            <option value="3">방화</option>
+                            <option value="4">금품갈취(강도)</option>
+                            <option value="5">절도</option>
+                            <option value="6">성폭력</option>
+                            <option value="7">마약</option>
+                            <option value="8">묻지마</option>
+                        </select>
+                    </div>
+                    <input type="submit">
+                </form>
+
+                <ul class="main__icons">
+                    <li><a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a></li>
+                  <!-- HTML 코드 -->
+<li><a href="javascript:void(0);" id="share-button"><i class="fa-solid fa-share"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+       
+</body>
+</html>
