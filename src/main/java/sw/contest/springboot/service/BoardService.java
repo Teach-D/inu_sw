@@ -25,13 +25,28 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public Page<Board> pageFindAll(Pageable pageable) {
+        return boardRepository.findAll(pageable);
+    }
+
+
     public Board findById(Long id) {
         Board findBoard = boardRepository.findById(id).get();
         return findBoard;
     }
 
+    public Page<Board> pageFindById(Long id, Pageable pageable) {
+        Page<Board> boards = boardRepository.findBoardById(id, pageable);
+        return boards;
+    }
+
     public List<Board> findByTitle(String title) {
         List<Board> byTitleContaining = boardRepository.findByTitleContaining(title);
+        return byTitleContaining;
+    }
+
+    public Page<Board> pagedFindByTitle(String title, Pageable pageable) {
+        Page<Board> byTitleContaining = boardRepository.findBoardByTitle(title, pageable);
         return byTitleContaining;
     }
 

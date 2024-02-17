@@ -38,22 +38,38 @@ public class BoardController {
     }
 
     @PostMapping("/board/list")
-    public String boardList(Model model, @RequestParam String select, @RequestParam(required = false) String searchKeyword) {
+    public String boardList(Model model, @RequestParam String select, @RequestParam(required = false) String searchKeyword
+    , @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
         log.info(select + "," + searchKeyword);
-        if(select == null || searchKeyword == "") {
-            List<Board> boardAll = boardService.findAll();
-            model.addAttribute("list", boardAll);
-        } else if(select.equals("id")) {
-            Board board = boardService.findById(Long.valueOf(searchKeyword));
-            log.info("id로 찾기");
-            log.info(board.getTitle());
-            model.addAttribute("list", board);
-        } else {
-            List<Board> boardServiceByTitle = boardService.findByTitle(searchKeyword);
-            model.addAttribute("list", boardServiceByTitle);
 
+        Page<Board> findBoardList = null;
+
+        if(select == null || searchKeyword == "") {
+            findBoardList = boardService.pageFindAll(pageable);
+            model.addAttribute("list", findBoardList);
+        } else if(select.equals("id")) {
+            findBoardList = boardService.pageFindById(Long.valueOf(searchKeyword), pageable);
+            log.info("id로 찾기");
+
+            model.addAttribute("list", findBoardList);
+        } else {
+            findBoardList = boardService.pagedFindByTitle(searchKeyword, pageable);
+            model.addAttribute("list", findBoardList);
         }
+
+        int nowPage = findBoardList.getPageable().getPageNumber()+1;
+        int startPage = Math.max(nowPage-4, 1);
+        int endPage = Math.min(nowPage+1, findBoardList.getTotalPages());
+        //int nowPage = board
+        /*for (Board board : boardAll) {
+            log.info(String.valueOf(board.getId()));
+        }*/
+        model.addAttribute("list", findBoardList);
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
 
         return "reportBoard/boardlist";
     }
@@ -79,12 +95,20 @@ public class BoardController {
     }
 
     @GetMapping("/board/list")
-    public String boardWritePro(Model model){
-        List<Board> boardAll = boardService.findAll();
-        for (Board board : boardAll) {
+    public String boardWritePro(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<Board> boardAll = boardService.pageFindAll(pageable);
+        int nowPage = boardAll.getPageable().getPageNumber()+1;
+        int startPage = Math.max(nowPage-4, 1);
+        int endPage = Math.min(nowPage+1, boardAll.getTotalPages());
+        //int nowPage = board
+        /*for (Board board : boardAll) {
             log.info(String.valueOf(board.getId()));
-        }
+        }*/
         model.addAttribute("list", boardAll);
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
         return "/reportBoard/boardlist";
     }
 
@@ -94,79 +118,5 @@ public class BoardController {
         model.addAttribute("board", findBoard);
         return "/reportBoard/boardview";
     }
-/*    @PostMapping("")
-    public String boardList(Model model) {
 
-        for (Board board : boardAll) {
-            log.info(board.getTitle());
-        }
-        return "/reportBoard/boardlist";
-    }*/
-
-/*    @GetMapping("/board/list")
-    public String boardList(Model model,
-                            @PageableDefault(page = 0, size = 10, sort = "id",direction = Sort.Direction.DESC) Pageable pageable,
-                            String searchKeyword){
-
-        Page<Board> list = null;
-
-        if(searchKeyword == null){
-            list = boardService.boardList(pageable);
-        }else{
-            list = boardService.boardSearchList(searchKeyword, pageable);
-        }
-
-
-        int nowPage = list.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(nowPage - 4, 1);
-        int endPage = Math.min(nowPage + 5, list.getTotalPages());
-
-        model.addAttribute("list", list);
-        model.addAttribute("nowPage",nowPage);
-        model.addAttribute("startPage",startPage);
-        model.addAttribute("endPage",endPage);
-
-        return "/reportBoard/boardlist";
-    }
-
-    @GetMapping("/board/view") // localhost:8080/board/view?id=1
-    public String boardView(Model model,Integer id){
-
-        model.addAttribute("board",boardService.boardView(id));
-        return "/reportBoard/boardview";
-    }
-
-    @GetMapping("/board/delete")
-    public String boardDelete(Integer id, Model model){
-
-        boardService.boardDelete(id);
-
-        model.addAttribute("message", "삭제가 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/list ");
-
-        return "/reportBoard/message";
-    }
-
-    @GetMapping("/board/modify/{id}")
-    public String boardModify(@PathVariable("id") Integer id, Model model){
-
-        model.addAttribute("board",boardService.boardView(id));
-
-        return "/reportBoard/boardmodify";
-    }
-
-    @PostMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Board board, Model model){
-
-        Board boardTemp =  boardService.boardView(id);
-        boardTemp.setTitle(board.getTitle());
-        boardTemp.setContent(board.getContent());
-
-        boardService.write(boardTemp);
-
-        model.addAttribute("message", "수정이 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/list ");
-
-        return "/reportBoard/message";
-    }*/
 }
