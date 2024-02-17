@@ -1,3 +1,5 @@
+<!--
+
 <?php
 
 $servername ="localhost";
@@ -46,3 +48,5 @@ else{
 
 
 ?>
+
+-->

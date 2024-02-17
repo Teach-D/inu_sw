@@ -1,16 +1,18 @@
+<!--
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>강력범죄 웹</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/guPage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://kit.fontawesome.com/5a9b8e0df0.js" crossorigin="anonymous"></script>
-    <script src="main.js" defer></script>
+    <script src="/js/guPage.js" defer></script>
 
 </head>
 <body>
@@ -21,7 +23,7 @@
             <div id="map"></div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad5c2d41866dc1de61d28315055bd57c"></script>
         </div>
-    
+
 <nav class="main">
     <div class="container">
         <div class="sidebar">
@@ -36,16 +38,15 @@
             </div>
             <div class="menu">
                 <ul class="main__menu">
-                    <li><a href="http://127.0.0.1:5500/Login_page/login.html"><i class="fa-solid fa-user"></i> 로그인</a></li>
-                    <li><a href="http://127.0.0.1:5500/Board.page/board.html"><i class="fa-solid fa-newspaper"></i> 게시판</a></li>
+                    <li><a href="/login/join"><i class="fa-solid fa-user"></i> 로그인</a></li>
+                    <li><a href="/board/list"><i class="fa-solid fa-newspaper"></i> 게시판</a></li>
                     <li><a href=""><i class="fa-solid fa-magnifying-glass"></i>검색</a></li>
                 </ul>
-
-                <form action="/basic/items" method="post">
+                <form>
                     <h2>범죄 정보 입력</h2>
                     <div>
                         <h1>범죄 종류</h1>
-                        <select name="Crime method">
+                        <select name="Crime method" onclick="displayArea(null, null, this.value)">
                             <option value="1">폭행</option>
                             <option value="2">살인</option>
                             <option value="3">방화</option>
@@ -56,7 +57,7 @@
                             <option value="8">묻지마</option>
                         </select>
                     </div>
-                    <input type="submit">
+                    <input type="submit" onclick="displayArea(null, null, this.value)">
                 </form>
 
                 <ul class="main__icons">
@@ -70,6 +71,8 @@
         </div>
     </div>
 </nav>
-       
+
 </body>
 </html>
+
+-->

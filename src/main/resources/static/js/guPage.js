@@ -1,4 +1,5 @@
-/* JavaScript 수정 */
+/*
+ /!* JavaScript 수정 *!/
 
 
 
@@ -124,7 +125,7 @@ function displayArea(coordinates, name, count1) {
     });
     //9edac7
     var fillColor;
-
+    log.info(count1)
 
 
     if(count1 == 1) {
@@ -497,3 +498,4 @@ function deletePolygon(polygons) {
     polygons = [];
 }
 
+*/
