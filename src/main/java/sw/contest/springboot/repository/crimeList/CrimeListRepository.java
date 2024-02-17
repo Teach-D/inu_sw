@@ -1,4 +1,4 @@
-package sw.contest.repository.crimeList;
+package sw.contest.springboot.repository.crimeList;
 // 동현
 public class CrimeListRepository {
 }

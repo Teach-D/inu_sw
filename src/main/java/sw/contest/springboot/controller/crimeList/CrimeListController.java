@@ -1,4 +1,4 @@
-package sw.contest.controller.crimeList;
+package sw.contest.springboot.controller.crimeList;
 
 public class CrimeListController {
 }

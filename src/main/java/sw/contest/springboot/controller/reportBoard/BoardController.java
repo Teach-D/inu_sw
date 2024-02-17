@@ -1,7 +1,10 @@
-package sw.contest.controller.reportBoard;
+package sw.contest.springboot.controller.reportBoard;
 
-import sw.contest.dto.reportBoard.Board;
-import sw.contest.service.BoardService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestParam;
+import sw.contest.springboot.dto.reportBoard.Board;
+import sw.contest.springboot.repository.reportBoard.BoardRepository;
+import sw.contest.springboot.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
+@Slf4j
 public class BoardController {
 
     @Autowired
@@ -25,19 +30,80 @@ public class BoardController {
         return "/reportBoard/boardwrite";
     }
 
-    @PostMapping("/board/writepro")
-    public String boardWritePro(Board board, Model model){
+    @PostMapping("/board/view")
+    public String boardView(Board board, Model model) {
+        boardService.save(board);
+        model.addAttribute("board", board);
+        return "/reportBoard/boardview";
+    }
 
+    @PostMapping("/board/list")
+    public String boardList(Model model, @RequestParam String select, @RequestParam(required = false) String searchKeyword) {
 
-        boardService.write(board);
+        log.info(select + "," + searchKeyword);
+        if(select == null || searchKeyword == "") {
+            List<Board> boardAll = boardService.findAll();
+            model.addAttribute("list", boardAll);
+        } else if(select.equals("id")) {
+            Board board = boardService.findById(Long.valueOf(searchKeyword));
+            log.info("id로 찾기");
+            log.info(board.getTitle());
+            model.addAttribute("list", board);
+        } else {
+            List<Board> boardServiceByTitle = boardService.findByTitle(searchKeyword);
+            model.addAttribute("list", boardServiceByTitle);
 
-        model.addAttribute("message", "글 작성이 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/list ");
+        }
 
-        return "/reportBoard/message";
+        return "reportBoard/boardlist";
+    }
+
+    @GetMapping("/board/delete")
+    public String deleteBoard(@RequestParam String id) {
+        boardService.deleteById(Long.valueOf(id));
+        return "redirect:/board/list";
+    }
+
+    @GetMapping("/board/modify/{id}")
+    public String modifyBoardContent(@PathVariable Long id, Model model) {
+        Board findBoard = boardService.findById(id);
+        log.info("id : ", id);
+        model.addAttribute("board", findBoard);
+        return "reportBoard/boardmodify";
+    }
+
+    @PostMapping("/board/update/{id}")
+    public String modifiedBoard(@PathVariable Long id, Board boardSearch) {
+        boardService.updateBoard(id, boardSearch);
+        return "redirect:/board/list";
     }
 
     @GetMapping("/board/list")
+    public String boardWritePro(Model model){
+        List<Board> boardAll = boardService.findAll();
+        for (Board board : boardAll) {
+            log.info(String.valueOf(board.getId()));
+        }
+        model.addAttribute("list", boardAll);
+        return "/reportBoard/boardlist";
+    }
+
+    @GetMapping("/board/view")
+    public String boardContent(@RequestParam Long id, Model model) {
+        Board findBoard = boardService.findById(id);
+        model.addAttribute("board", findBoard);
+        return "/reportBoard/boardview";
+    }
+/*    @PostMapping("")
+    public String boardList(Model model) {
+
+        for (Board board : boardAll) {
+            log.info(board.getTitle());
+        }
+        return "/reportBoard/boardlist";
+    }*/
+
+/*    @GetMapping("/board/list")
     public String boardList(Model model,
                             @PageableDefault(page = 0, size = 10, sort = "id",direction = Sort.Direction.DESC) Pageable pageable,
                             String searchKeyword){
@@ -102,5 +168,5 @@ public class BoardController {
         model.addAttribute("searchUrl", "/board/list ");
 
         return "/reportBoard/message";
-    }
+    }*/
 }

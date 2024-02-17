@@ -1,4 +1,4 @@
-package sw.contest.dto.reportBoard;
+package sw.contest.springboot.dto.reportBoard;
 
 import jakarta.persistence.*;
 import lombok.Data;

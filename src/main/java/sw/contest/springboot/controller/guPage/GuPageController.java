@@ -1,14 +1,12 @@
-package sw.contest.controller.guPage;
+package sw.contest.springboot.controller.guPage;
 // 동현
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import sw.contest.dto.guPage.GuPageDto;
+import sw.contest.springboot.dto.guPage.GuPageDto;
 
 @Controller
 @Slf4j

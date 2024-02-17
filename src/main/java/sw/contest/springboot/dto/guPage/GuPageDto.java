@@ -1,4 +1,4 @@
-package sw.contest.dto.guPage;
+package sw.contest.springboot.dto.guPage;
 // 동현
 
 import lombok.Data;

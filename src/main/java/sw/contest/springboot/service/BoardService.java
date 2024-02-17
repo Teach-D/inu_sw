@@ -1,7 +1,7 @@
-package sw.contest.service;
+package sw.contest.springboot.service;
 
-import sw.contest.dto.reportBoard.Board;
-import sw.contest.repository.reportBoard.BoardRepository;
+import sw.contest.springboot.dto.reportBoard.Board;
+import sw.contest.springboot.repository.reportBoard.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,11 +16,37 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     // 글 작성
-    public void write(Board board){
+    public Board save(Board board) {
         boardRepository.save(board);
+        return board;
+    }
+
+    public List<Board> findAll() {
+        return boardRepository.findAll();
+    }
+
+    public Board findById(Long id) {
+        Board findBoard = boardRepository.findById(id).get();
+        return findBoard;
+    }
+
+    public List<Board> findByTitle(String title) {
+        List<Board> byTitleContaining = boardRepository.findByTitleContaining(title);
+        return byTitleContaining;
+    }
+
+    public void deleteById(Long id) {
+        boardRepository.deleteById(id);
+    }
+
+    public void updateBoard(Long id, Board boardSearch) {
+        Board board = boardRepository.findById(id).get();
+        Board updatedBoard = new Board(board.getId(), boardSearch.getTitle(), boardSearch.getContent());
+        boardRepository.save(updatedBoard);
     }
 
     // 게시글 리스트 처리
+/*
     public Page<Board> boardList(Pageable pageable){
 
         return boardRepository.findAll(pageable);
@@ -43,4 +69,7 @@ public class BoardService {
 
         boardRepository.deleteById(id);
     }
+*/
+
+
 }

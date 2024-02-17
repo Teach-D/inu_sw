@@ -1,13 +1,15 @@
-package sw.contest.repository.reportBoard;
+package sw.contest.springboot.repository.reportBoard;
 
-import sw.contest.dto.reportBoard.Board;
+import sw.contest.springboot.dto.reportBoard.Board;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface BoardRepository extends JpaRepository<Board, Integer> {
+import java.util.List;
 
-    Page<Board> findByTitleContaining(String searchKeyword, Pageable pageable);
+@Repository
+public interface BoardRepository extends JpaRepository<Board, Long> {
+
+    List<Board> findByTitleContaining(String searchKeyword);
 }
