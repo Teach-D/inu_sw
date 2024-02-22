@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -92,6 +91,11 @@
             width: 95%; /* 작은 화면에 맞게 더 축소 */
         }
     }
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
 </style>
 
 
@@ -108,12 +112,14 @@
 </div>
 
 <div class="layout">
-    <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
-        <input name="title" type="text" th:value="${board.title}">
-        <textarea name="content" th:text="${board.content}"></textarea>
+    <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post" th:object="${board}">
+        <input name="title" type="text" th:errorclass="field-error" th:value="${board.title}">
+        <div class="field-error" th:errors="*{title}"></div>
+        <textarea name="content" th:errorclass="field-error" th:text="${board.content}"></textarea>
         <button type="submit">수정</button>
+        <div class="field-error" th:errors="*{content}"></div>
+
     </form>
 </div>
 </body>
 </html>
--->
