@@ -1,4 +1,4 @@
-package sw.contest.spring;
+package sw.contest.spring.member;
 
 public interface MemberRepository {
 

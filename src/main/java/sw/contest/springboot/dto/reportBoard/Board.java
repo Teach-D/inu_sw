@@ -1,6 +1,7 @@
 package sw.contest.springboot.dto.reportBoard;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Entity
@@ -12,9 +13,11 @@ public class Board {
     private Integer id;
 
     @Column(name = "BOARD_TITLE")
+    @NotBlank
     private String title;
 
     @Column(name = "BOARD_CONTENT")
+    @NotBlank
     private String content;
 
     public Board() {

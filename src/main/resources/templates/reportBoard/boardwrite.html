@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +91,11 @@
             width: 95%; /* 작은 화면에 맞게 더 축소 */
         }
     }
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
 </style>
 
 <body>
@@ -101,11 +105,14 @@
 </div>
 
 <div class="layout">
-    <form action="/board/view" method="post">
-        <input name="title" type="text" placeholder="제목">
-        <textarea name="content" placeholder="내용"></textarea>
+    <form action="/board/view" method="post" th:object="${board}">
+
+        <input name="title" th:errorclass="field-error" type="text" placeholder="제목">
+        <div class="field-error" th:errors="*{title}"></div>
+        <textarea name="content"  th:errorclass="field-error" placeholder="내용"></textarea>
+        <div class="field-error" th:errors="*{content}"></div>
         <button type="submit">작성</button>
     </form>
 </div>
 </body>
-</html>-->
+</html>

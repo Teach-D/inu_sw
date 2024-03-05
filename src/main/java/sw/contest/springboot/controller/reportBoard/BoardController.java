@@ -1,7 +1,10 @@
 package sw.contest.springboot.controller.reportBoard;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import sw.contest.springboot.dto.reportBoard.Board;
 import sw.contest.springboot.repository.reportBoard.BoardRepository;
 import sw.contest.springboot.service.BoardService;
@@ -12,9 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -25,15 +25,19 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
     @GetMapping("/board/write") // localhost:8080/board/wirte
-    public String boardWriteForm(){
-
+    public String boardWriteForm(Model model){
+        model.addAttribute("board", new Board());
         return "/reportBoard/boardwrite";
     }
 
     @PostMapping("/board/view")
-    public String boardView(Board board, Model model) {
+    public String boardView(@Validated @ModelAttribute Board board, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+
+            return "/reportBoard/boardwrite";
+        }
         boardService.save(board);
-        model.addAttribute("board", board);
         return "/reportBoard/boardview";
     }
 
@@ -85,11 +89,18 @@ public class BoardController {
         Board findBoard = boardService.findById(id);
         log.info("id : ", id);
         model.addAttribute("board", findBoard);
+        log.info(String.valueOf(findBoard));
         return "reportBoard/boardmodify";
     }
 
     @PostMapping("/board/update/{id}")
-    public String modifiedBoard(@PathVariable Long id, Board boardSearch) {
+    public String modifiedBoard(@PathVariable Long id, @Validated
+    Board boardSearch, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            return "/reportBoard/boardmodify";
+        }
+
         boardService.updateBoard(id, boardSearch);
         return "redirect:/board/list";
     }
